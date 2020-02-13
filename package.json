@@ -9,8 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4",
+    "express": "^4.17.1",
     "mysql": "^2.16.0",
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.2",
+    "start": "^5.1.0"
   }
 }
