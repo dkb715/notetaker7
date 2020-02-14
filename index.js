@@ -15,46 +15,46 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "Develop/public")));
 
-class Notepad {
-    constructor() {
-        this.lastid = 0;
-    }
-    read() {
-        return fs.readFileAsync("db/db.json", "utf8");
-    }
-    write(note) {
-        return writeFileAsync("db/db.json", JSON.stringify(note) )
-    }
-    getNotes() {
-        return this.read () 
-        .then(notes => {
-            let parseNotes; 
-            try {
-                parseNotes = [].concat(JSON.parse(notes))
-            } catch (error) {
-                parseNotes = []
-            }
-            return parseNotes
-        })
-    }
+// class Notepad {
+//     constructor() {
+//         this.lastid = 0;
+//     }
+//     read() {
+//         return fs.readFileAsync("db/db.json", "utf8");
+//     }
+//     write(note) {
+//         return writeFileAsync("db/db.json", JSON.stringify(note) )
+//     }
+//     getNotes() {
+//         return this.read () 
+//         .then(notes => {
+//             let parseNotes; 
+//             try {
+//                 parseNotes = [].concat(JSON.parse(notes))
+//             } catch (error) {
+//                 parseNotes = []
+//             }
+//             return parseNotes
+//         })
+//     }
 
-    addNote(note) {
-        const {title, text} = note
-        if (!title || !text) {
-            throw new Error ("Input Error, no text!")
-        }
-        const newNote = {title, text, id : ++ this.lastid}
-    return this.getNotes() .then(notes => [...notes, newNote ]) 
-        .then(updatedNotes => this.write(updatedNotes))
-        .then(()=> newNote)
-    }
+//     addNote(note) {
+//         const {title, text} = note
+//         if (!title || !text) {
+//             throw new Error ("Input Error, no text!")
+//         }
+//         const newNote = {title, text, id : ++ this.lastid}
+//     return this.getNotes() .then(notes => [...notes, newNote ]) 
+//         .then(updatedNotes => this.write(updatedNotes))
+//         .then(()=> newNote)
+//     }
 
-    removeNote(id) {
-        return this.getNotes() 
-        .then(notes => notes.filter(note => note.id !== parseInt(id)))
-        .then(filteredNotes => this.write(filteredNotes))
-    }
-};
+//     removeNote(id) {
+//         return this.getNotes() 
+//         .then(notes => notes.filter(note => note.id !== parseInt(id)))
+//         .then(filteredNotes => this.write(filteredNotes))
+//     }
+// };
 app.get("/api/notes", function(err, res) {
   try {
     // reads the notes from json file
@@ -131,7 +131,7 @@ app.delete("/api/notes/:id", function(req, res) {
   }
 });
 
-module.exports = new Notepad()
+// module.exports = new Notepad()
 // HTML GET Requests
 
 // Web page when the Get started button is clicked
