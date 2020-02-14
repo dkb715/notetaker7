@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Notepad = require("../db/index")
+const Notepad = require("../../index")
 
 
 router.get ("/notes", function(req, res){
